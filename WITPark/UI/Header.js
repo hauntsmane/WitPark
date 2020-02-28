@@ -7,7 +7,7 @@ class Header extends Component {
     render() {
         return (
             <View className='Header' style={styles.container}>
-                <Text className="logo" style={styles.logo}>Test</Text>
+                <Text className="logo" style={styles.logo}>WITPark</Text>
             </View>
         )
     }
