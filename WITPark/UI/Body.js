@@ -1,18 +1,31 @@
 import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
+import { Col, Row, Grid } from "react-native-easy-grid";
+
 import Counter from './Counter'
+import Login from './Login/Login'
 
 class Body extends Component {
     
 
     render() {
         return (
-            <View className='Body' style={styles.container}>
-                <Counter color={'lightblue'} size={16} />
-                <Counter color={'skyblue'} size={32} />
-                <Counter color={'steelblue'} size={80} />
-                <Counter color={'darkblue'} size={140} />
-            </View>
+            // <Grid>
+            //     <Col style={{backgroundColor:'red'}}>
+            //         <Counter color={'lightblue'} size={16} />
+            //         <Counter color={'skyblue'} size={32} />
+            //     </Col>
+            //     <Col style={{backgroundColor:'yellow'}}>
+            //         <Counter color={'steelblue'} size={80} />
+            //         <Counter color={'darkblue'} size={140} />
+            //     </Col>
+                
+            // </Grid>
+            <Grid>
+                <Col>
+                    <Login />
+                </Col>
+            </Grid>
         )
     }
 }
