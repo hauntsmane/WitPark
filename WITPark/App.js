@@ -1,6 +1,8 @@
+import 'react-native-gesture-handler';
 //Packages go first
 import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
+import {NavigationContainer} from '@react-navigation/native';
 
 //Then created components
 import Counter from './UI/Counter'
@@ -14,10 +16,13 @@ export default class App extends Component {
   //render and return at the bottom of class definition
   render() {
     return (
-      <View style={styles.container}>
-        <Header />
-        <Body />
-      </View>
+      <NavigationContainer>
+        <View style={styles.container}>
+          <Header />
+          <Body />
+        </View>
+      </NavigationContainer>
+
     )
   }
 } //can also put export default Classname here if not on top
