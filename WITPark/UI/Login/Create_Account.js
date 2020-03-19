@@ -1,78 +1,123 @@
 import React, { Component } from 'react'
-import { View, StyleSheet } from 'react-native'
-import React, { Component } from 'react';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, AsyncStorage, Keyboard } from 'react-native';
+import { Col, Row, Grid } from "react-native-easy-grid";
+import {Actions} from 'react-native-router-flux';
+
 
 
 export default class Register extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      username: '',
-      password: '',
-      error: '',
-    };
-
-    
-    this.handlePassChange = this.handlePassChange.bind(this);
-    this.handleUserChange = this.handleUserChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.dismissError = this.dismissError.bind(this);
-  }
-
-  dismissError() {
-    this.setState({ error: '' });
-  }
-
-  handleSubmit(evt) {
-    evt.preventDefault();
-
-    if (!this.state.username) {
-      return this.setState({ error: 'Username Required' });
+  constructor(props){
+    super(props);
+    this.state={
+        email:'',
+        password: ''
     }
-
-    if (!this.state.password) {
-      return this.setState({ error: 'Password Required' });
-    }
-
-    return this.setState({ error: '' });
-  }
-
-  handleUserChange(evt) {
-    this.setState({
-      username: evt.target.value,
-    });
-  };
-
-  handlePassChange(evt) {
-    this.setState({
-      password: evt.target.value,
-    });
-  }
-
-  render() {
-
-
-    return (
-      <div className="Login">
-        <form onSubmit={this.handleSubmit}>
-          {
-            this.state.error &&
-            <h3 data-test="error" onClick={this.dismissError}>
-              <button onClick={this.dismissError}>✖</button>
-              {this.state.error}
-            </h3>
-          }
-          <label>User Name</label>
-          <input type="text" data-test="username" value={this.state.username} onChange={this.handleUserChange} />
-
-          <label>Password</label>
-          <input type="password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
-
-          <input type="submit" value="Log In" data-test="submit" />
-        </form>
-      </div>
-    );
-  }
 }
-export default Register;
+
+saveData =async()=>{
+    const {email,password} = this.state;
+
+    //save data with asyncstorage
+    let loginDetails={
+        email: email,
+        password: password
+    }
+
+    if(this.props.type !== 'Login')
+    {
+        AsyncStorage.setItem('loginDetails', JSON.stringify(loginDetails));
+
+        Keyboard.dismiss();
+        alert("You successfully registered. Email: " + email + ' password: ' + password);
+        this.login();
+    }
+    else if(this.props.type == 'Login')
+    {
+        try{
+            let loginDetails = await AsyncStorage.getItem('loginDetails');
+            let ld = JSON.parse(loginDetails);
+
+            if (ld.email != null && ld.password != null)
+            {
+                if (ld.email == email && ld.password == password)
+                {
+                    alert('Go in!');
+                }
+                else
+                {
+                    alert('Email and Password does not exist!');
+                }
+            }
+
+        }catch(error)
+        {
+            alert(error);
+        }
+    }
+}
+
+showData = async()=>{
+    let loginDetails = await AsyncStorage.getItem('loginDetails');
+    let ld = JSON.parse(loginDetails);
+    alert('email: '+ ld.email + ' ' + 'password: ' + ld.password);
+}
+
+render() {
+    return(
+        <View style={styles.container}>
+            <TextInput style={styles.inputBox}
+            onChangeText={(email) => this.setState({email})}
+            underlineColorAndroid='rgba(0,0,0,0)' 
+            placeholder="Email"
+            placeholderTextColor = "#002f6c"
+            selectionColor="#fff"
+            keyboardType="email-address"
+            onSubmitEditing={()=> this.password.focus()}/>
+            
+            <TextInput style={styles.inputBox}
+            onChangeText={(password) => this.setState({password})} 
+            underlineColorAndroid='rgba(0,0,0,0)' 
+            placeholder="Password"
+            secureTextEntry={true}
+            placeholderTextColor = "#002f6c"
+            ref={(input) => this.password = input}
+            />
+
+            <TouchableOpacity style={styles.button}> 
+                <Text style={styles.buttonText} onPress={this.saveData}>{this.props.type}</Text>
+            </TouchableOpacity>
+        </View>
+        
+    )
+}
+}
+
+const styles = StyleSheet.create({
+container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+},
+inputBox: {
+    width: 300,
+    backgroundColor: '#eeeeee', 
+    borderRadius: 25,
+    paddingHorizontal: 16,
+    fontSize: 16,
+    color: '#002f6c',
+    marginVertical: 10
+},
+button: {
+    width: 300,
+    backgroundColor: '#f24537',
+    borderRadius: 25,
+    marginVertical: 10,
+    paddingVertical: 12
+},
+buttonText: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#f9f9f9',
+    textAlign: 'center'
+}
+});
