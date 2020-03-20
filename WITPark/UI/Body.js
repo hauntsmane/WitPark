@@ -11,16 +11,16 @@ class Body extends Component {
 
     render() {
         return (
-            // <View className='Body' style={styles.container}>
-            //     <Lot name={'West Lot'}/>
-            //     <Lot name={'East Lot'}/>
-            //     <Lot name={'Annex Lot'}/>
-            //     <Lot name={'Parker St Lot'}/>
-            // </View>
+            // 
 
             <Grid>
                 <Col>
-                    <Login />
+                    <View className='Body' style={styles.container}>
+                        <Lot name={'West Lot'}/>
+                        <Lot name={'East Lot'}/>
+                        <Lot name={'Annex Lot'}/>
+                        <Lot name={'Parker St Lot'}/>
+                    </View>
                 </Col>
             </Grid>
         )
