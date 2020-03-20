@@ -1,7 +1,8 @@
+import React, { Component } from 'react';
 import {Router, Stack, Scene} from 'react-native-router-flux';
  
-import Login from '../Login/Login';
-import Register from '../Login/Create_Account';
+import Login from './Login/Login';
+import Register from './Login/Create_Account';
  
 export default class Routes extends Component {
     render() {
@@ -12,8 +13,8 @@ export default class Routes extends Component {
                 titleStyle={{color: 'white',}}
             >
                 <Stack key="root">
-                <Scene key="login" component={Login} title="Login"/>
-                <Scene key="signup" component={Signup} title="Sign up"/>
+                    <Scene key="login" component={Login} title="Login"/>
+                    <Scene key="signup" component={Register} title="Sign up"/>
                 </Stack>
             </Router>
         )
