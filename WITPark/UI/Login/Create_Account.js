@@ -5,9 +5,7 @@ import {
   View,
   TouchableOpacity
 } from 'react-native';
-
 import Form from '../Login/Form';
-
 import {Actions} from 'react-native-router-flux';
 
 export default class Register extends Component {
