@@ -1,28 +1,49 @@
-import React, { Component } from 'react'
-import { View, StyleSheet, Text } from 'react-native'
-import { Col, Row, Grid } from "react-native-easy-grid";
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, AsyncStorage, Keyboard } from 'react-native'; 
+import {Actions} from 'react-native-router-flux';
+import Form from './UI/Login/Form';
 
 export default class Login extends Component {
-
-  render() {
-    return(
-      <Grid style={{backgroundColor:'purple'}}> 
-        <Row size={50}>
-          <Row style={{backgroundColor:'blue'}} size={1}>
-            <Text>Test</Text>
-          </Row>
-          <Row style={{backgroundColor:'green'}} size={1}>
-            <Text>Test2</Text>
-          </Row>
-        </Row>
-        <Row size={25}>
-
-        </Row>
-      </Grid>
-    );
-  }
+ 
+    signup() {
+        Actions.signup()
+    }
+ 
+    render() {
+        return(
+                <View style={styles.container}>
+                <Text>{'\n'}</Text>
+                <Text>{'\n'}</Text>
+                <Form type="Login"/>
+                <View style={styles.signupTextCont}> 
+                    <Text style={styles.signupText}>Dont have an account yet? </Text>
+                    <TouchableOpacity onPress={this.signup}><Text style={styles.signupButton}>Signup</Text></TouchableOpacity>
+                </View>
+            </View>
+        )
+    }
 }
-
+ 
 const styles = StyleSheet.create({
-    
-  })
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'white',
+    },
+    signupTextCont: {
+      flexGrow: 1,
+      justifyContent: 'center',
+      alignItems: 'flex-end',
+      paddingVertical: 16,
+      flexDirection: 'row',
+    },
+    signupText: {
+      color: '#12799f', 
+      fontSize:16,
+    },
+    signupButton: {
+        color: '#12799f',
+        fontSize:16,
+        fontWeight: '500',
+    }
+});
