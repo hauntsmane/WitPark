@@ -1,11 +1,13 @@
-import React, { Component } from 'react'
-import { View, StyleSheet } from 'react-native'
-import { Col, Row, Grid } from "react-native-easy-grid";
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  View,
+  StatusBar
+} from 'react-native';
 
-import Counter from './Counter'
-import Lot from './Parking/Lot'
-import Login from './Login/Login'
+import Routes from './Login/Routes';
 
+<<<<<<< HEAD
 class Body extends Component {
     
 
@@ -25,14 +27,24 @@ class Body extends Component {
             </Grid>
         )
     }
+=======
+export default class Body extends Component   {
+  render() {
+    return (
+      <View style={styles.container}>
+        <StatusBar
+          backgroundColor="#002f6c" 
+          barStyle="light-content"
+        />
+        <Routes/>
+      </View>
+    );
+  }
+>>>>>>> master
 }
 
-export default Body
-
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'stretch',
-    },
-  })
+  container: {
+    flex: 1,
+  }
+});
