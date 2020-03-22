@@ -5,7 +5,6 @@ import { View, StyleSheet } from 'react-native'
 import {NavigationContainer} from '@react-navigation/native';
 
 //Then created components
-import Counter from './UI/Counter'
 import Header from './UI/Header'
 import Body from './UI/Body'
 

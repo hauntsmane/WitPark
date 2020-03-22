@@ -1,19 +1,33 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { Grid, Row, Col } from 'react-native-easy-grid'
+import {Actions} from 'react-native-router-flux';
 
 export default class Lot extends Component {
-    
+    handleClick = () => {
+        Actions.lot_detail({title:this.props.name})
+    }
     render() {
         const {name} = this.props
 
         return(
-            <View style={styles.lot}>
-                <Text style={styles.txt}>{name}</Text>
-                <View style={styles.occ}>
-                    <Text style={styles.txt}>100/150</Text>
-                    <Text style={styles.txt}>></Text>
-                </View>
-            </View>
+
+                <Grid style={styles.lot}>
+                    <Row style={{backgroundColor:'red'}} onPress={this.handleClick}>
+                        <Col size={3}>
+                            <Text style={styles.txt}>{name}</Text>
+                        </Col>
+                        <Col size={1}>
+                            <Text style={styles.txt}>100/150</Text>
+                        </Col>
+                        <Col size={1}>
+                            <Text style={styles.txt}>></Text>
+                        </Col>
+                    </Row>
+                    
+                </Grid>
+
+            
         );
     }
 } 
@@ -21,7 +35,7 @@ export default class Lot extends Component {
 const styles = StyleSheet.create({
     lot: {
           
-          backgroundColor: 'red'
+          backgroundColor: '#bababacf'
         , borderBottomColor: 'blue'
         , borderBottomWidth: 2
         , padding: 10

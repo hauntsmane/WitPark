@@ -5,29 +5,8 @@ import {
   StatusBar
 } from 'react-native';
 
-import Routes from './Login/Routes';
+import Routes from './Routes';
 
-<<<<<<< HEAD
-class Body extends Component {
-    
-
-    render() {
-        return (
-            // 
-
-            <Grid>
-                <Col>
-                    <View className='Body' style={styles.container}>
-                        <Lot name={'West Lot'}/>
-                        <Lot name={'East Lot'}/>
-                        <Lot name={'Annex Lot'}/>
-                        <Lot name={'Parker St Lot'}/>
-                    </View>
-                </Col>
-            </Grid>
-        )
-    }
-=======
 export default class Body extends Component   {
   render() {
     return (
@@ -37,10 +16,20 @@ export default class Body extends Component   {
           barStyle="light-content"
         />
         <Routes/>
+
+        {/* <Grid>
+                <Col>
+                    <View className='Body' style={styles.container}>
+                        <Lot name={'West Lot'}/>
+                        <Lot name={'East Lot'}/>
+                        <Lot name={'Annex Lot'}/>
+                        <Lot name={'Parker St Lot'}/>
+                    </View>
+                </Col>
+            </Grid> */}
       </View>
     );
   }
->>>>>>> master
 }
 
 const styles = StyleSheet.create({
