@@ -12,6 +12,10 @@ export default class Form extends Component {
             password: ''
         }
     }
+
+    loginTRUE() {
+        Actions.home()
+    }
  
     saveData =async()=>{
         const {email,password} = this.state;
@@ -21,7 +25,8 @@ export default class Form extends Component {
             email: email,
             password: password
         }
- 
+        
+        //Register form
         if(this.props.type !== 'Login')
         {
             AsyncStorage.setItem('loginDetails', JSON.stringify(loginDetails));
@@ -30,23 +35,28 @@ export default class Form extends Component {
             alert("You successfully registered. Email: " + email + ' password: ' + password);
             this.login();
         }
+
+        //Login form
         else if(this.props.type == 'Login')
         {
             try{
-                let loginDetails = await AsyncStorage.getItem('loginDetails');
-                let ld = JSON.parse(loginDetails);
+                //let loginDetails = await AsyncStorage.getItem('loginDetails');
+                //let ld = JSON.parse(loginDetails);
  
-                if (ld.email != null && ld.password != null)
-                {
-                    if (ld.email == email && ld.password == password)
-                    {
-                        alert('Login in!');
-                    }
-                    else
-                    {
-                        alert('Email and Password does not exist!');
-                    }
-                }
+                //if (this.state.email != '' && this.state.password != '')
+                //{
+                    Actions.home();
+                    // if (this.state.email == email && this.state.password == password)
+                    // {
+                    //     //alert('Login in!');
+                    //     this.loginTRUE
+                    // }
+                    // else
+                    // {
+                    //     alert('Email and Password does not exist!');
+                    // }
+                    
+                //}
  
             }catch(error)
             {
@@ -64,6 +74,7 @@ export default class Form extends Component {
     render() {
         return(
             <View style={styles.container}>
+                {/* email textbox */}
                 <TextInput style={styles.inputBox}
                 onChangeText={(email) => this.setState({email})}
                 underlineColorAndroid='rgba(0,0,0,0)' 
@@ -73,6 +84,7 @@ export default class Form extends Component {
                 keyboardType="email-address"
                 onSubmitEditing={()=> this.password.focus()}/>
                 
+                {/* password textbox */}
                 <TextInput style={styles.inputBox}
                 onChangeText={(password) => this.setState({password})} 
                 underlineColorAndroid='rgba(0,0,0,0)' 
@@ -82,6 +94,7 @@ export default class Form extends Component {
                 ref={(input) => this.password = input}
                 />
  
+                {/* submit button */}
                 <TouchableOpacity style={styles.button}> 
                     <Text style={styles.buttonText} onPress={this.saveData}>{this.props.type}</Text>
                 </TouchableOpacity>
@@ -91,6 +104,7 @@ export default class Form extends Component {
     }
 }
  
+//Styles
 const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
