@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, AsyncStorage, Keyboard } from 'react-native'; 
 import {Actions} from 'react-native-router-flux';
 import Form from '../Login/Form';
-<<<<<<< HEAD
-
-=======
->>>>>>> e1badf8cb76f7ace16bfc6f33ab8a8ea99ce1ed9
 
 export default class Login extends Component {
  
