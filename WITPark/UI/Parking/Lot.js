@@ -5,10 +5,12 @@ import {Actions} from 'react-native-router-flux';
 
 export default class Lot extends Component {
     handleClick = () => {
-        Actions.lot_detail({title:this.props.name})
+        Actions.lot_detail({title:this.props.name
+                          , occ:this.props.occ})
     }
     render() {
-        const {name} = this.props
+        const name = this.props.name
+        const occ = this.props.occ
 
         return(
 
@@ -18,7 +20,7 @@ export default class Lot extends Component {
                             <Text style={styles.txt}>{name}</Text>
                         </Col>
                         <Col size={1}>
-                            <Text style={styles.txt}>100/150</Text>
+                            <Text style={styles.txt}>{occ}</Text>
                         </Col>
                         <Col size={1}>
                             <Text style={styles.txt}>></Text>
