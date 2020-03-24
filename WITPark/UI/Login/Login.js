@@ -37,11 +37,11 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
     },
     signupText: {
-      color: '#12799f', 
+      color: '#000000', 
       fontSize:16,
     },
     signupButton: {
-        color: '#12799f',
+        color: '#E7B004',
         fontSize:16,
         fontWeight: '500',
     }

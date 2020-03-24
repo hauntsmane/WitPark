@@ -40,23 +40,7 @@ export default class Form extends Component {
         else if(this.props.type == 'Login')
         {
             try{
-                //let loginDetails = await AsyncStorage.getItem('loginDetails');
-                //let ld = JSON.parse(loginDetails);
- 
-                //if (this.state.email != '' && this.state.password != '')
-                //{
                     Actions.home();
-                    // if (this.state.email == email && this.state.password == password)
-                    // {
-                    //     //alert('Login in!');
-                    //     this.loginTRUE
-                    // }
-                    // else
-                    // {
-                    //     alert('Email and Password does not exist!');
-                    // }
-                    
-                //}
  
             }catch(error)
             {
@@ -79,7 +63,7 @@ export default class Form extends Component {
                 onChangeText={(email) => this.setState({email})}
                 underlineColorAndroid='rgba(0,0,0,0)' 
                 placeholder="Email"
-                placeholderTextColor = "#002f6c"
+                placeholderTextColor = "#000000"
                 selectionColor="#fff"
                 keyboardType="email-address"
                 onSubmitEditing={()=> this.password.focus()}/>
@@ -90,7 +74,7 @@ export default class Form extends Component {
                 underlineColorAndroid='rgba(0,0,0,0)' 
                 placeholder="Password"
                 secureTextEntry={true}
-                placeholderTextColor = "#002f6c"
+                placeholderTextColor = "#000000"
                 ref={(input) => this.password = input}
                 />
  
@@ -116,12 +100,12 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         paddingHorizontal: 16,
         fontSize: 16,
-        color: '#002f6c',
+        color: '#000000',
         marginVertical: 10
     },
     button: {
         width: 300,
-        backgroundColor: '#4f83cc',
+        backgroundColor: '#000000',
         borderRadius: 25,
         marginVertical: 10,
         paddingVertical: 12
@@ -129,7 +113,7 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: 16,
         fontWeight: '500',
-        color: '#ffffff',
+        color: '#E7B004',
         textAlign: 'center'
     }
 });
