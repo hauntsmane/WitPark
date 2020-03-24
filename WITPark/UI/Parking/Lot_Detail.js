@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, ImageBackground, Button } from 'react-native'
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native'
 import { Grid, Col, Row } from 'react-native-easy-grid'
 
 class Lot_Detail extends Component {
@@ -12,11 +12,13 @@ class Lot_Detail extends Component {
         if (current == max){
             return (
             <Row>
-                <Text>Lot full?</Text>
-                <Button 
-                    title='Notify Me!' 
+                <Text style={styles.txt}>Lot full?</Text>
+                <TouchableOpacity
+                    style={styles.button}
                     onPress={() => ( alert('Email goes here.'))}
-                />
+                >
+                    <Text style={styles.buttonText}>Notify Me!</Text>
+                </TouchableOpacity>
             </Row>
             
             );
@@ -33,23 +35,20 @@ class Lot_Detail extends Component {
                 <Row>
                     <Row>
                         <Col>
-                            <Text>Name: {lot}</Text>
+                            <Text style={styles.txt}>Name: {lot}</Text>
                         </Col>
                         <Col>
                         
                         </Col>
                     </Row>
                     <Row>
-                        <ImageBackground 
-                        style={{backgroundColor:'black'
-                        , width: '100%'
-                        , height: '100%'}} >
-                            <Text style={{color:'white', fontSize:15}}>{occ}</Text>
+                        <ImageBackground style={styles.lotpic} >
+                            <Text style={[styles.txt, styles.occ]}>{occ}</Text>
                         </ImageBackground>
                     </Row>
                 </Row>
                 <Row>
-                    <Text>Parking Pass Info</Text> 
+                    <Text style={styles.txt}>Parking Pass Info</Text> 
                 </Row>
                 <Row>
                     {this.isLotFull()}
@@ -61,3 +60,42 @@ class Lot_Detail extends Component {
 } 
 
 export default Lot_Detail
+
+const styles = {
+    occ: {
+        color:'white'        
+    }
+
+    , lotpic: {
+        backgroundColor:'black'
+        , width: '100%'
+        , height: '100%'
+        , justifyContent: 'center'
+        , alignItems: 'center'
+    }
+
+    , txt: {
+        fontSize:20
+    }
+
+    , btn: {
+        backgroundColor: 'blue'
+        , borderRadius: 10
+        , padding: 10
+
+    }
+
+    , button: {
+        width: 300,
+        backgroundColor: '#4f83cc',
+        borderRadius: 25,
+        marginVertical: 10,
+        paddingVertical: 12
+    }
+    , buttonText: {
+        fontSize: 16,
+        fontWeight: '500',
+        color: '#ffffff',
+        textAlign: 'center'
+    }
+}

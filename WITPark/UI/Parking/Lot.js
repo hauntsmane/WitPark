@@ -15,7 +15,7 @@ export default class Lot extends Component {
         return(
 
                 <Grid style={styles.lot}>
-                    <Row style={{backgroundColor:'red'}} onPress={this.handleClick}>
+                    <Row style={styles.lotRow} onPress={this.handleClick}>
                         <Col size={3}>
                             <Text style={styles.txt}>{name}</Text>
                         </Col>
@@ -36,8 +36,7 @@ export default class Lot extends Component {
 
 const styles = StyleSheet.create({
     lot: {
-          
-          backgroundColor: '#bababacf'
+        backgroundColor: '#bababacf'
         , borderBottomColor: 'blue'
         , borderBottomWidth: 2
         , padding: 10
@@ -46,12 +45,20 @@ const styles = StyleSheet.create({
         , alignItems: 'center'
         , flexDirection: 'row'
     }
+
+    , lotRow: {
+        width: '100%'
+        , height: '100%'
+        , flex: 1
+        , alignItems:'center'
+    }
+
     , occ: {
         justifyContent: 'flex-end'
         , backgroundColor: 'green'
     }
     , txt: {
-        fontSize:15
+        fontSize:18
         
     }
   })
