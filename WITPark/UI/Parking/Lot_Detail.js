@@ -1,15 +1,22 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native'
 import { Grid, Col, Row } from 'react-native-easy-grid'
+import Westmap from '../Maps/westmap'
+
+ 
 
 class Lot_Detail extends Component {
     
-//need to add directions and parking restrictions
+//need to add directions
     isLotFull = () => {
         let current = this.props.occ.split('/')[0]
         let max = this.props.occ.split('/')[1]
-    
 
+
+    /*    handleClick = () => {
+            Actions.render({Westmap)
+        }
+*/
         if (current == max){
             return (
             <Row>
@@ -105,6 +112,17 @@ class Lot_Detail extends Component {
                             <Text style={[styles.txt, styles.occ]}>{occ}</Text>
                         </ImageBackground>
                     </Row>
+                </Row>
+                <Row>
+                <Row>
+                <TouchableOpacity
+                    style={styles.button}
+                    //need this to link to westlot map
+                    onPress={() => (this.handleClick)}
+                >
+                    <Text style={styles.buttonText}>Get Directions!</Text>
+                </TouchableOpacity>
+            </Row>
                 </Row>
                 <Row>
                     <Col>
