@@ -20,7 +20,7 @@ export default class Routes extends Component {
                     <Scene key="signup" component={Register} title="Sign up"/>
                     <Scene key="home" component={Lots} title="Parking"  hideNavBar={true}/>
                     <Scene key="lot_detail" component={Lot_Detail} title="Lot Detail" hideNavBar={false}/>
-                    <Scene key="westmap" component={Westmap} title="West Lot" onPress={() => ('../Maps/westmap')} hideNavBar={false} />
+                    <Scene key="westmap" component={Westmap} title="West Lot" hideNavBar={false} />
                 </Stack>
             </Router>
         )

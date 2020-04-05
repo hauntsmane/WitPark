@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native'
 import { Grid, Col, Row } from 'react-native-easy-grid'
-import Westmap from '../Maps/westmap'
-
+import { Actions } from 'react-native-router-flux'
  
 
 class Lot_Detail extends Component {
@@ -12,11 +11,6 @@ class Lot_Detail extends Component {
         let current = this.props.occ.split('/')[0]
         let max = this.props.occ.split('/')[1]
 
-
-    /*    handleClick = () => {
-            Actions.render({Westmap)
-        }
-*/
         if (current == max){
             return (
             <Row>
@@ -44,6 +38,11 @@ class Lot_Detail extends Component {
         return end
     }
 */
+    
+Westmap() {
+    Actions.westmap()
+  }
+
     isFac = () => {
         if (this.props.pass.includes("F/S")){
             return(
@@ -118,7 +117,7 @@ class Lot_Detail extends Component {
                 <TouchableOpacity
                     style={styles.button}
                     //need this to link to westlot map
-                    onPress={() => (this.handleClick)}
+                    onPress={() => this.Westmap}  
                 >
                     <Text style={styles.buttonText}>Get Directions!</Text>
                 </TouchableOpacity>
