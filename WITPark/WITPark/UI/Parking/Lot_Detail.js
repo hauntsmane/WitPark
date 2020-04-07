@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native'
 import { Grid, Col, Row } from 'react-native-easy-grid'
+import { Actions } from 'react-native-router-flux'
+ 
 
 class Lot_Detail extends Component {
     
-//need to add directions and parking restrictions
+//need to add directions
     isLotFull = () => {
         let current = this.props.occ.split('/')[0]
         let max = this.props.occ.split('/')[1]
-    
 
         if (current == max){
             return (
@@ -37,6 +38,11 @@ class Lot_Detail extends Component {
         return end
     }
 */
+    
+Westmap() {
+    Actions.westmap()
+  }
+
     isFac = () => {
         if (this.props.pass.includes("F/S")){
             return(
@@ -105,6 +111,17 @@ class Lot_Detail extends Component {
                             <Text style={[styles.txt, styles.occ]}>{occ}</Text>
                         </ImageBackground>
                     </Row>
+                </Row>
+                <Row>
+                <Row>
+                <TouchableOpacity
+                    style={styles.button}
+                    //need this to link to westlot map
+                    onPress={() => this.Westmap}  
+                >
+                    <Text style={styles.buttonText}>Get Directions!</Text>
+                </TouchableOpacity>
+            </Row>
                 </Row>
                 <Row>
                     <Col>
