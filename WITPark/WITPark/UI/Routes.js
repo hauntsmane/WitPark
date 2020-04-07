@@ -5,7 +5,7 @@ import Login from './Login/Login';
 import Register from './Login/Register';
 import Lots from './Parking/Lots';
 import Lot_Detail from './Parking/Lot_Detail';
-import Westmap from './Maps/westmap'
+import LotMap from './Maps/LotMap'
  
 export default class Routes extends Component {
     render() {
@@ -20,7 +20,7 @@ export default class Routes extends Component {
                     <Scene key="signup" component={Register} title="Sign up"/>
                     <Scene key="home" component={Lots} title="Parking"  hideNavBar={true}/>
                     <Scene key="lot_detail" component={Lot_Detail} title="Lot Detail" hideNavBar={false}/>
-                    <Scene key="westmap" component={Westmap} title="West Lot" hideNavBar={false} />
+                    <Scene key="map" component={LotMap} title="Lot Map" hideNavBar={false} />
                 </Stack>
             </Router>
         )

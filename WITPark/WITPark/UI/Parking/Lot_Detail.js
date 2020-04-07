@@ -6,7 +6,7 @@ import { Actions } from 'react-native-router-flux'
 
 class Lot_Detail extends Component {
     
-//need to add directions
+    //need to add directions
     isLotFull = () => {
         let current = this.props.occ.split('/')[0]
         let max = this.props.occ.split('/')[1]
@@ -27,21 +27,21 @@ class Lot_Detail extends Component {
         }
         return null
     }
-   /* isPass = () => {
-        let end = <Text> </Text>
-        if (this.props.pass.includes("F/S")){
-                end+= <Text style={styles.txt}>Faculty/Staff</Text>
+    /* isPass = () => {
+            let end = <Text> </Text>
+            if (this.props.pass.includes("F/S")){
+                    end+= <Text style={styles.txt}>Faculty/Staff</Text>
+            }
+            if (this.props.pass.includes("V")){
+                end+= <Text style={styles.txt}>Visitor</Text>
         }
-        if (this.props.pass.includes("V")){
-            end+= <Text style={styles.txt}>Visitor</Text>
+            return end
+        }
+    */
+        
+    GotoMap= () => {
+        Actions.map({lat: this.props.lat, lon: this.props.lon, title:this.props.title})
     }
-        return end
-    }
-*/
-    
-Westmap() {
-    Actions.westmap()
-  }
 
     isFac = () => {
         if (this.props.pass.includes("F/S")){
@@ -117,7 +117,7 @@ Westmap() {
                 <TouchableOpacity
                     style={styles.button}
                     //need this to link to westlot map
-                    onPress={() => this.Westmap}  
+                    onPress={this.GotoMap}  
                 >
                     <Text style={styles.buttonText}>Get Directions!</Text>
                 </TouchableOpacity>

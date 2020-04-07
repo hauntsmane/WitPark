@@ -5,8 +5,11 @@ import {Actions} from 'react-native-router-flux';
 
 export default class Lot extends Component {
     handleClick = () => {
-        Actions.lot_detail({title:this.props.name
-                          , occ:this.props.occ, pass:this.props.pass})
+        Actions.lot_detail({title: this.props.name
+                          , occ: this.props.occ
+                          , pass: this.props.pass
+                          , lat: this.props.lat
+                          , lon: this.props.lon})
     }
     render() {
         const name = this.props.name

@@ -11,25 +11,28 @@ const mapStyles = {
   
 
 
-export default class Westmap extends Component {
+export default class LotMap extends Component {
     render() {
+
+      const lat = this.props.lat
+      const lon = this.props.lon
         return ( 
           <View style={styles.container}>
             <MapView
               style={styles.map}
               initialRegion={{
-                latitude: 40.7030799,
-                longitude: -74.0559131,
+                latitude: lat, //NS
+                longitude: lon, //EW
                 latitudeDelta: 0,
                 longitudeDelta: 0.05,
               }}>
               <Marker
                 coordinate={{
-                  latitude: 40.7030799,
-                  longitude: -74.0559131,
+                  latitude: lat,
+                  longitude: lon,
                 }}
                 title="Demo"
-                description="A location to test"
+                description="Parking Lot Location"
               />
             </MapView>
           </View>       
