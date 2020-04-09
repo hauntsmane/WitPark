@@ -2,11 +2,41 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native'
 import { Grid, Col, Row } from 'react-native-easy-grid'
 import { Actions } from 'react-native-router-flux'
+import getDirections from 'react-native-google-maps-directions'
  
 
 class Lot_Detail extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+          latitude: null,
+          longitude: null,
+          error: null,
+          concat: null,
+          coords:[],
+          x: 'false',
+          cordLatitude: this.props.lat,
+          cordLongitude: this.props.lon,
+        };
     
-    //need to add directions
+        //this.mergeLot = this.mergeLot.bind(this);
+    
+      }
+
+    //   mergeLot(){
+    //     if (this.state.latitude != null && this.state.longitude!=null)
+    //      {
+    //        let concatLot = this.state.latitude +","+this.state.longitude
+    //        this.setState({
+    //          concat: concatLot
+    //        }, () => {
+    //          this.getDirections(concatLot, this.props.lat + ',' + this.props.lon);
+    //        });
+    //      }
+    
+    //    }
+
     isLotFull = () => {
         let current = this.props.occ.split('/')[0]
         let max = this.props.occ.split('/')[1]
@@ -38,9 +68,62 @@ class Lot_Detail extends Component {
             return end
         }
     */
-        
+       
+   componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+       (position) => {
+         this.setState({
+           latitude: position.coords.latitude,
+           longitude: position.coords.longitude,
+           error: null,
+         });
+         this.mergeLot();
+       },
+       (error) => this.setState({ error: error.message }),
+       { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 },
+     );
+
+   }
+
     GotoMap= () => {
-        Actions.map({lat: this.props.lat, lon: this.props.lon, title:this.props.title})
+        //Actions.map({lat: this.props.lat, lon: this.props.lon, title:this.props.title})
+        const data = {
+            source: {
+                latitude: this.state.latitude,
+                longitude: this.state.longitude
+            }
+            , destination: {
+                latitude: this.props.lat,
+                longitude: this.props.lon
+            }
+            , params: [
+                {
+                key: "travelmode",
+                value: "driving"        // may be "walking", "bicycling" or "transit" as well
+                }
+                // , {
+                // key: "dir_action",
+                // value: "navigate"       // this instantly initializes navigation using the given travel mode
+                // }
+            ]
+            // , waypoints: [
+            //     {
+            //     latitude: -33.8600025,
+            //     longitude: 18.697452
+            //     },
+            //     {
+            //     latitude: -33.8600026,
+            //     longitude: 18.697453
+            //     },
+            //     {
+            //     latitude: -33.8600036,
+            //     longitude: 18.697493
+            //     }
+            // ]
+        }
+        
+        getDirections(data)
+    
     }
 
     isFac = () => {

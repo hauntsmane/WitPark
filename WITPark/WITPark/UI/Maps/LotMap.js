@@ -61,7 +61,7 @@ export default class LotMap extends Component {
            this.setState({
              concat: concatLot
            }, () => {
-             this.getDirections(concatLot, "this.props.lat, this.props.lon");
+             this.getDirections(concatLot, this.props.lat + ',' + this.props.lon);
            });
          }
     
@@ -70,8 +70,11 @@ export default class LotMap extends Component {
        async getDirections(startLoc, destinationLoc) {
     
              try {
+               console.log(startLoc)
+               console.log(destinationLoc)
                  let resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${ startLoc }&destination=${ destinationLoc }`)
                  let respJson = await resp.json();
+                 console.log(respJson)
                  let points = Polyline.decode(respJson.routes[0].overview_polyline.points);
                  let coords = points.map((point, index) => {
                      return  {
@@ -99,7 +102,7 @@ export default class LotMap extends Component {
        latitude: lat,
        longitude: lon,
        latitudeDelta: 0,
-       longitudeDelta: 0.05
+       longitudeDelta: 0.007 //change this to zoom in/out init zoom (larger # = zoom out)
       }}>
 
       {!!this.state.latitude && !!this.state.longitude && <MapView.Marker
