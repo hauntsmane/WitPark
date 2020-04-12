@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView } from 'react-native'
 import { Grid, Col, Row } from 'react-native-easy-grid'
 import { Actions } from 'react-native-router-flux'
 import getDirections from 'react-native-google-maps-directions'
@@ -190,7 +190,10 @@ class Lot_Detail extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <ImageBackground style={styles.lotpic} >
+                        <ImageBackground 
+                        source={require('../Images/car_shadow.png')} 
+                        style={styles.lotpic} 
+                        resizeMode='contain'>
                             <Text style={[styles.txt, styles.occ]}>{occ}</Text>
                         </ImageBackground>
                     </Row>
@@ -206,29 +209,24 @@ class Lot_Detail extends Component {
                 </TouchableOpacity>
             </Row>
                 </Row>
-                <Row>
-                    <Col>
-                    <Text style={styles.txt}>Parking Pass Info</Text> 
-                    </Col>
+                <Row>                    
+                    <Text>
+                        <Text style={styles.txt}>Parking Pass Info:</Text> 
+                        {'\n\n'}
+                        {this.isFac()}
+                        {'\n'}
+                        {this.isCom()}
+                        {'\n'}
+                        {this.isVis()}
+                        {'\n'}
+                        {this.isOver()}
+                        {'\n'}
+                        {this.isGuest()}
+                    </Text>
                 </Row>
-                <Row>
-                    {this.isFac()}
-                    </Row>
-                    <Row>
-                    {this.isCom()}
-                    </Row>
-                    <Row>
-                    {this.isVis()}
-                    </Row>
-                    <Row>
-                    {this.isOver()}
-                    </Row>
-                    <Row>
-                    {this.isGuest()}
-                    </Row>
-                <Row>
+                {/* <Row style={{backgroundColor: 'red'}}>
                     {this.isLotFull()}
-                </Row>    
+                </Row>     */}
             </Grid>
         );
     }
@@ -242,8 +240,7 @@ const styles = {
     }
 
     , lotpic: {
-        backgroundColor:'black'
-        , width: '100%'
+        width: '100%'
         , height: '100%'
         , justifyContent: 'center'
         , alignItems: 'center'
