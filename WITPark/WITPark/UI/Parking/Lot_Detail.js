@@ -258,11 +258,11 @@ const styles = {
     }
 
     , button: {
-        width: 300,
+        width: 250,
         backgroundColor: '#4f83cc',
         borderRadius: 25,
-        marginVertical: 10,
-        paddingVertical: 12
+        marginVertical: 65,
+        paddingVertical: 15
     }
     , buttonText: {
         fontSize: 16,
