@@ -125,94 +125,21 @@ class Lot_Detail extends Component {
         getDirections(data)
     
     }
-
-    isFac = () => {
-        if (this.props.pass.includes("F/S")){
-            return(
-                <Row>
-                    <Image source={require('../Images/staff_green.png')} style={{maxHeight:32, maxWidth:32}}/>
-                    <Text style={styles.txt}>Faculty/Staff</Text>
-                </Row>
-            );
-        }
-        else
-            return  (
-                <Row>
-                    <Image source={require('../Images/staff_green.png')} style={{maxHeight:32, maxWidth:32, tintColor: 'gray', opacity:0.6 }}/>
-                    <Text style={grey.txt}>Faculty/Staff</Text>
-                </Row>
-            );
-        
-    }
-    isCom = () => {
-        if (this.props.pass.includes("C")){
-            return(
-                <Row>
-                    <Image source={require('../Images/student.png')} style={{maxHeight:32, maxWidth:32}}/>
-                    <Text style={styles.txt}>Student Commuter</Text>
-                </Row>
-            );
-        }
-        else
-            return(
-                <Row>
-                    <Image source={require('../Images/student.png')} style={{maxHeight:32, maxWidth:32, tintColor: 'gray', opacity:0.6}}/>
-                    <Text style={grey.txt}>Student Commuter</Text>
-                </Row>
-            );
-
-    }
-    isVis = () => {
-        if (this.props.pass.includes("V")){
-            return(
-                <Row>
-                 <Image source={require('../Images/visitor.png')} style={{maxHeight:32, maxWidth:32}}/>
-                    <Text style={styles.txt}>Visitor</Text>
-                </Row>
-            );
-        }
-        else
-            return(
-                <Row>
-                    <Image source={require('../Images/visitor.png')} style={{maxHeight:32, maxWidth:32, tintColor: 'gray', opacity:0.6}}/>
-                    <Text style={grey.txt}>Visitor</Text>
-                </Row>
-                
-            ); 
-    }
-    isOver = () => {
-        if (this.props.pass.includes("O")){
-            return(
-                <Row>
-                    <Image source={require('../Images/overnight.png')} style={{maxHeight:32, maxWidth:32}}/>
-                    <Text style={styles.txt}>Overnight</Text>
-                </Row>
-            );
-        }
-        else
-            return(
-                <Row>
-                    <Image source={require('../Images/overnight.png')} style={{maxHeight:32, maxWidth:32, tintColor: 'gray', opacity:0.6}}/>
-                    <Text style={grey.txt}>Overnight</Text>
-                </Row>
-            );  
-    }
-    isMoto = () => {
-        if (this.props.pass.includes("M")){
-            return(
-                <Row>
-                    <Image source={require('../Images/motorcycle.png')} style={{maxHeight:32, maxWidth:32}}/>
-                    <Text style={styles.txt}>Motorcycle</Text>
-                </Row>
-            );
-        }
-        else
-            return(
-                <Row>
-                    <Image source={require('../Images/motorcycle.png')} style={{maxHeight:32, maxWidth:32, tintColor: 'gray', opacity:0.6}}/>
-                    <Text style={grey.txt}>Motorcycle</Text>
-                </Row>
-            );
+    canPark = (passType, person, imgLoc ) => {
+        console.log(passType)
+        console.log(this.props.pass)
+        console.log(this.props.pass.includes(passType))
+        return(
+            <Row>
+                <Image source={imgLoc} style={{maxHeight:32, maxWidth:32, 
+                    tintColor: (this.props.pass.includes(passType) ? 'none' : 'gray'),
+                    opacity: (this.props.pass.includes(passType) ? 1 : 0.6)
+                }}/>
+                <Text style={[styles.txt, {
+                    color: (this.props.pass.includes(passType) ? '#000000' : '#BBBBBB')
+                }]}>{person}</Text>
+            </Row>
+        )
     }
 
     render() {
@@ -269,22 +196,11 @@ class Lot_Detail extends Component {
                 <Row>
                     <Text style={styles.txt}>Parking Pass Info:{'\n'}</Text> 
                 </Row>
-
-                    {this.isFac()}
-
-                    
-                    {this.isCom()}
-
-
-                    {this.isVis()}
-
-                    
-                    {this.isOver()}
-
-
-                    
-                    {this.isMoto()}
-
+                    {this.canPark('F', 'Faculty/Staff', require('../Images/staff_green.png'))}
+                    {this.canPark('C', 'Student Commuter', require('../Images/student.png'))}
+                    {this.canPark('V', 'Visitor', require('../Images/visitor.png'))}
+                    {this.canPark('O', 'Overnight', require('../Images/overnight.png'))}
+                    {this.canPark('M', 'Motorcycle', require('../Images/motorcycle.png'))}
                 </View>
                 {/* <Row style={{backgroundColor: 'red'}}>
                     {this.isLotFull()}
