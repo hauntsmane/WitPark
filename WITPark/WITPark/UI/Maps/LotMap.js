@@ -70,8 +70,6 @@ export default class LotMap extends Component {
        async getDirections(startLoc, destinationLoc) {
     
              try {
-               console.log(startLoc)
-               console.log(destinationLoc)
                  let resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${ startLoc }&destination=${ destinationLoc }`)
                  let respJson = await resp.json();
                  console.log(respJson)

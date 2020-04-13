@@ -20,15 +20,16 @@ export default class Lot extends Component {
 
                 <Grid style={styles.lot}>
                     <Row style={styles.lotRow} onPress={this.handleClick}>
-                        <Col size={3}>
-                            <Text style={styles.txt}>{name}</Text>
-                        </Col>
                         <Col size={1}>
-                            <Text style={styles.txt}>{occ}</Text>
+                            <Text style={styles.lotName}>{name}</Text>
                         </Col>
                         <Col size={1}>
                             <Text style={styles.txt}>{pass}</Text>
                         </Col>
+                        <Col size={1}>
+                            <Text style={styles.occupancy}>{occ}</Text>
+                        </Col>
+                        
                     </Row>
                     
                 </Grid>
@@ -56,13 +57,14 @@ const styles = StyleSheet.create({
         , flex: 1
         , alignItems:'center'
     }
-
-    , occ: {
-        justifyContent: 'flex-end'
-        , backgroundColor: 'green'
-    }
     , txt: {
         fontSize:18
+        
+    }
+    , lotName: {
+        fontSize:18
+    }
+    , occupancy: {
         
     }
   })

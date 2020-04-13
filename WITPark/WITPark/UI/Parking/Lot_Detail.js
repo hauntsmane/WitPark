@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView, Image } from 'react-native'
 import { Grid, Col, Row } from 'react-native-easy-grid'
 import { Actions } from 'react-native-router-flux'
 import getDirections from 'react-native-google-maps-directions'
@@ -125,52 +125,21 @@ class Lot_Detail extends Component {
         getDirections(data)
     
     }
-
-    isFac = () => {
-        if (this.props.pass.includes("F/S")){
-            return(
-            <Text style={styles.txt}>Faculty/Staff</Text>
-            )
-        }
-        else
-            return  <Text style={grey.txt}>Faculty/Staff</Text>
-        
-    }
-    isCom = () => {
-        if (this.props.pass.includes("C")){
-            return(
-            <Text style={styles.txt}>Commuter</Text>
-            )
-        }
-        else
-            return  <Text style={grey.txt}>Commuter</Text>
-    }
-    isVis = () => {
-        if (this.props.pass.includes("V")){
-            return(
-            <Text style={styles.txt}>Visitor</Text>
-            )
-        }
-        else
-            return  <Text style={grey.txt}>Visitor</Text>
-    }
-    isOver = () => {
-        if (this.props.pass.includes("O")){
-            return(
-            <Text style={styles.txt}>Overnight</Text>
-            )
-        }
-        else
-            return  <Text style={grey.txt}>Overnight</Text>
-    }
-    isGuest = () => {
-        if (this.props.pass.includes("G")){
-            return(
-            <Text style={styles.txt}>Student Guest</Text>
-            )
-        }
-        else
-            return  <Text style={grey.txt}>Student Guest</Text>
+    canPark = (passType, person, imgLoc ) => {
+        console.log(passType)
+        console.log(this.props.pass)
+        console.log(this.props.pass.includes(passType))
+        return(
+            <Row>
+                <Image source={imgLoc} style={{maxHeight:32, maxWidth:32, 
+                    tintColor: (this.props.pass.includes(passType) ? 'none' : 'gray'),
+                    opacity: (this.props.pass.includes(passType) ? 1 : 0.6)
+                }}/>
+                <Text style={[styles.txt, {
+                    color: (this.props.pass.includes(passType) ? '#000000' : '#BBBBBB')
+                }]}>{person}</Text>
+            </Row>
+        )
     }
 
     render() {
@@ -179,57 +148,65 @@ class Lot_Detail extends Component {
         const pass = this.props.pass;
 
         return(
+            <ScrollView>
             <Grid>
-                <Row>
-                    <Row>
+                <Row >
+                    {/* <Row>
                         <Col>
                             <Text style={styles.txt}>Name: {lot}</Text>
                         </Col>
                         <Col>
                         
                         </Col>
-                    </Row>
-                    <Row>
-                        <ImageBackground style={styles.lotpic} >
+                    </Row> */}
+                    <Col size={50}></Col>
+                    <Col size={50}>
+                        <ImageBackground 
+                        source={require('../Images/car_shadow.png')} 
+                        style={styles.lotpic} 
+                        resizeMode='contain'>
                             <Text style={[styles.txt, styles.occ]}>{occ}</Text>
                         </ImageBackground>
-                    </Row>
-                </Row>
-                <Row>
-                <Row>
-                <TouchableOpacity
-                    style={styles.button}
-                    //need this to link to westlot map
-                    onPress={this.GotoMap}  
-                >
-                    <Text style={styles.buttonText}>Get Directions!</Text>
-                </TouchableOpacity>
-            </Row>
-                </Row>
-                <Row>
-                    <Col>
-                    <Text style={styles.txt}>Parking Pass Info</Text> 
                     </Col>
                 </Row>
+                <Row >
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={this.GotoMap}  
+                    >
+                        <Text style={styles.buttonText}>Get Directions!</Text>
+                    </TouchableOpacity>
+                </Row>
+                {/* <Row size={3}>  
+                <Image source={require('../Images/staff_green.png')} style={{maxHeight:32, maxWidth:32}}/>                  
+                    <Row>
+                        <Text style={styles.txt}>Parking Pass Info:</Text> 
+                    </Row>
+                        <Row>{this.isFac()}</Row>
+                        
+                        <Row>{this.isCom()}</Row>
+                        
+                        <Row>{this.isVis()}</Row>
+                        
+                        <Row>{this.isOver()}</Row>
+                        
+                        <Row>{this.isGuest()}</Row>
+                    </Row> */}
+                    <View>
                 <Row>
-                    {this.isFac()}
-                    </Row>
-                    <Row>
-                    {this.isCom()}
-                    </Row>
-                    <Row>
-                    {this.isVis()}
-                    </Row>
-                    <Row>
-                    {this.isOver()}
-                    </Row>
-                    <Row>
-                    {this.isGuest()}
-                    </Row>
-                <Row>
+                    <Text style={styles.txt}>Parking Pass Info:{'\n'}</Text> 
+                </Row>
+                    {this.canPark('F', 'Faculty/Staff', require('../Images/staff_green.png'))}
+                    {this.canPark('C', 'Student Commuter', require('../Images/student.png'))}
+                    {this.canPark('V', 'Visitor', require('../Images/visitor.png'))}
+                    {this.canPark('O', 'Overnight', require('../Images/overnight.png'))}
+                    {this.canPark('M', 'Motorcycle', require('../Images/motorcycle.png'))}
+                </View>
+                {/* <Row style={{backgroundColor: 'red'}}>
                     {this.isLotFull()}
-                </Row>    
+                </Row>     */}
             </Grid>
+            </ScrollView>
         );
     }
 } 
@@ -242,9 +219,8 @@ const styles = {
     }
 
     , lotpic: {
-        backgroundColor:'black'
-        , width: '100%'
-        , height: '100%'
+        width: '100%'
+        , height: 100
         , justifyContent: 'center'
         , alignItems: 'center'
     }
@@ -261,11 +237,11 @@ const styles = {
     }
 
     , button: {
-        width: 300,
+        width: 250,
         backgroundColor: '#4f83cc',
         borderRadius: 25,
-        marginVertical: 10,
-        paddingVertical: 12
+        marginVertical: 65,
+        paddingVertical: 15
     }
     , buttonText: {
         fontSize: 16,

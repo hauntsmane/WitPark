@@ -22,10 +22,7 @@ class Header extends Component {
               </Col>
               <Col>
               <TouchableOpacity onPress={ this.signOut}>
-        <Text
-          style={styles.logout}>
-          Signout
-        </Text>
+        <Text style={styles.logout}>Signout</Text>
       </TouchableOpacity>
               </Col>
               </Grid>
