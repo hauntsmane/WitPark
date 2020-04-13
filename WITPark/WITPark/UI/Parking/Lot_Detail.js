@@ -126,9 +126,6 @@ class Lot_Detail extends Component {
     
     }
     canPark = (passType, person, imgLoc ) => {
-        console.log(passType)
-        console.log(this.props.pass)
-        console.log(this.props.pass.includes(passType))
         return(
             <Row>
                 <Image source={imgLoc} style={{maxHeight:32, maxWidth:32, 

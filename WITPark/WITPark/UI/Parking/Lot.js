@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Image } from 'react-native'
 import { Grid, Row, Col } from 'react-native-easy-grid'
 import {Actions} from 'react-native-router-flux';
 
@@ -11,6 +11,14 @@ export default class Lot extends Component {
                           , lat: this.props.lat
                           , lon: this.props.lon})
     }
+
+    canPark = (passType, imgLoc) => {
+        if(this.props.pass.includes(passType))
+        return(
+            <Row>
+                <Image source={imgLoc} style={styles.passIcon}/></Row>
+        )
+    }
     render() {
         const name = this.props.name
         const occ = this.props.occ
@@ -21,13 +29,18 @@ export default class Lot extends Component {
                 <Grid style={styles.lot}>
                     <Row style={styles.lotRow} onPress={this.handleClick}>
                         <Col size={1}>
-                            <Text style={styles.lotName}>{name}</Text>
+                            <Text style={styles.txt}>{name}</Text>
                         </Col>
                         <Col size={1}>
-                            <Text style={styles.txt}>{pass}</Text>
+                            <Row style={{alignItems:'center'}}>
+                            {this.canPark('F', require('../Images/staff_green.png'))}
+                            {this.canPark('C', require('../Images/student.png'))}
+                            {this.canPark('V', require('../Images/visitor.png'))}
+                            {this.canPark('O', require('../Images/overnight.png'))}
+                            {this.canPark('M', require('../Images/motorcycle.png'))}</Row>
                         </Col>
                         <Col size={1}>
-                            <Text style={styles.occupancy}>{occ}</Text>
+                            <Text style={styles.txt}>{occ}</Text>
                         </Col>
                         
                     </Row>
@@ -41,14 +54,18 @@ export default class Lot extends Component {
 
 const styles = StyleSheet.create({
     lot: {
-        backgroundColor: '#bababacf'
-        , borderBottomColor: 'blue'
-        , borderBottomWidth: 2
+        backgroundColor: '#a7a9acf2'
         , padding: 10
         , flex: 1
         , justifyContent: 'space-around'
         , alignItems: 'center'
         , flexDirection: 'row'
+        , margin:5
+        , borderRadius:20
+        , shadowColor: '#000000'
+        , shadowOffset: { width: 1, height: 1 }
+        , shadowOpacity: 0.3
+        , elevation: 2
     }
 
     , lotRow: {
@@ -58,13 +75,13 @@ const styles = StyleSheet.create({
         , alignItems:'center'
     }
     , txt: {
-        fontSize:18
+        fontSize:25
+        , fontWeight:'bold'
         
     }
-    , lotName: {
-        fontSize:18
-    }
-    , occupancy: {
-        
+    , passIcon: {
+        maxHeight:32
+        , maxWidth:32
+        , justifyContent:'center'
     }
   })
