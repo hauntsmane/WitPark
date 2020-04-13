@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView, Image } from 'react-native'
 import { Grid, Col, Row } from 'react-native-easy-grid'
 import { Actions } from 'react-native-router-flux'
 import getDirections from 'react-native-google-maps-directions'
@@ -129,48 +129,90 @@ class Lot_Detail extends Component {
     isFac = () => {
         if (this.props.pass.includes("F/S")){
             return(
-            <Text style={styles.txt}>Faculty/Staff</Text>
-            )
+                <Row>
+                    <Image source={require('../Images/staff_green.png')} style={{maxHeight:32, maxWidth:32}}/>
+                    <Text style={styles.txt}>Faculty/Staff</Text>
+                </Row>
+            );
         }
         else
-            return  <Text style={grey.txt}>Faculty/Staff</Text>
+            return  (
+                <Row>
+                    <Image source={require('../Images/staff_green.png')} style={{maxHeight:32, maxWidth:32, tintColor: 'gray', opacity:0.6 }}/>
+                    <Text style={grey.txt}>Faculty/Staff</Text>
+                </Row>
+            );
         
     }
     isCom = () => {
         if (this.props.pass.includes("C")){
             return(
-            <Text style={styles.txt}>Commuter</Text>
-            )
+                <Row>
+                    <Image source={require('../Images/student.png')} style={{maxHeight:32, maxWidth:32}}/>
+                    <Text style={styles.txt}>Student Commuter</Text>
+                </Row>
+            );
         }
         else
-            return  <Text style={grey.txt}>Commuter</Text>
+            return(
+                <Row>
+                    <Image source={require('../Images/student.png')} style={{maxHeight:32, maxWidth:32, tintColor: 'gray', opacity:0.6}}/>
+                    <Text style={grey.txt}>Student Commuter</Text>
+                </Row>
+            );
+
     }
     isVis = () => {
         if (this.props.pass.includes("V")){
             return(
-            <Text style={styles.txt}>Visitor</Text>
-            )
+                <Row>
+                 <Image source={require('../Images/visitor.png')} style={{maxHeight:32, maxWidth:32}}/>
+                    <Text style={styles.txt}>Visitor</Text>
+                </Row>
+            );
         }
         else
-            return  <Text style={grey.txt}>Visitor</Text>
+            return(
+                <Row>
+                    <Image source={require('../Images/visitor.png')} style={{maxHeight:32, maxWidth:32, tintColor: 'gray', opacity:0.6}}/>
+                    <Text style={grey.txt}>Visitor</Text>
+                </Row>
+                
+            ); 
     }
     isOver = () => {
         if (this.props.pass.includes("O")){
             return(
-            <Text style={styles.txt}>Overnight</Text>
-            )
+                <Row>
+                    <Image source={require('../Images/overnight.png')} style={{maxHeight:32, maxWidth:32}}/>
+                    <Text style={styles.txt}>Overnight</Text>
+                </Row>
+            );
         }
         else
-            return  <Text style={grey.txt}>Overnight</Text>
-    }
-    isGuest = () => {
-        if (this.props.pass.includes("G")){
             return(
-            <Text style={styles.txt}>Student Guest</Text>
-            )
+                <Row>
+                    <Image source={require('../Images/overnight.png')} style={{maxHeight:32, maxWidth:32, tintColor: 'gray', opacity:0.6}}/>
+                    <Text style={grey.txt}>Overnight</Text>
+                </Row>
+            );  
+    }
+    isMoto = () => {
+        if (this.props.pass.includes("M")){
+            return(
+                <Row>
+                    <Image source={require('../Images/motorcycle.png')} style={{maxHeight:32, maxWidth:32}}/>
+                    <Text style={styles.txt}>Motorcycle</Text>
+                </Row>
+            );
         }
         else
-            return  <Text style={grey.txt}>Student Guest</Text>
+            return(
+                <Row>
+                    <Image source={require('../Images/motorcycle.png')} style={{maxHeight:32, maxWidth:32, tintColor: 'gray', opacity:0.6}}/>
+                    <Text style={grey.txt}>Motorcycle</Text>
+                </Row>
+            );
     }
 
     render() {
@@ -179,55 +221,76 @@ class Lot_Detail extends Component {
         const pass = this.props.pass;
 
         return(
+            <ScrollView>
             <Grid>
-                <Row>
-                    <Row>
+                <Row >
+                    {/* <Row>
                         <Col>
                             <Text style={styles.txt}>Name: {lot}</Text>
                         </Col>
                         <Col>
                         
                         </Col>
-                    </Row>
-                    <Row>
+                    </Row> */}
+                    <Col size={50}></Col>
+                    <Col size={50}>
                         <ImageBackground 
                         source={require('../Images/car_shadow.png')} 
                         style={styles.lotpic} 
                         resizeMode='contain'>
                             <Text style={[styles.txt, styles.occ]}>{occ}</Text>
                         </ImageBackground>
-                    </Row>
+                    </Col>
                 </Row>
-                <Row>
-                <Row>
-                <TouchableOpacity
-                    style={styles.button}
-                    //need this to link to westlot map
-                    onPress={this.GotoMap}  
-                >
-                    <Text style={styles.buttonText}>Get Directions!</Text>
-                </TouchableOpacity>
-            </Row>
+                <Row >
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={this.GotoMap}  
+                    >
+                        <Text style={styles.buttonText}>Get Directions!</Text>
+                    </TouchableOpacity>
                 </Row>
-                <Row>                    
-                    <Text>
+                {/* <Row size={3}>  
+                <Image source={require('../Images/staff_green.png')} style={{maxHeight:32, maxWidth:32}}/>                  
+                    <Row>
                         <Text style={styles.txt}>Parking Pass Info:</Text> 
-                        {'\n\n'}
-                        {this.isFac()}
-                        {'\n'}
-                        {this.isCom()}
-                        {'\n'}
-                        {this.isVis()}
-                        {'\n'}
-                        {this.isOver()}
-                        {'\n'}
-                        {this.isGuest()}
-                    </Text>
+                    </Row>
+                        <Row>{this.isFac()}</Row>
+                        
+                        <Row>{this.isCom()}</Row>
+                        
+                        <Row>{this.isVis()}</Row>
+                        
+                        <Row>{this.isOver()}</Row>
+                        
+                        <Row>{this.isGuest()}</Row>
+                    </Row> */}
+                    <View>
+                <Row>
+                    <Text style={styles.txt}>Parking Pass Info:{'\n'}</Text> 
                 </Row>
+
+                    {this.isFac()}
+
+                    
+                    {this.isCom()}
+
+
+                    {this.isVis()}
+
+                    
+                    {this.isOver()}
+
+
+                    
+                    {this.isMoto()}
+
+                </View>
                 {/* <Row style={{backgroundColor: 'red'}}>
                     {this.isLotFull()}
                 </Row>     */}
             </Grid>
+            </ScrollView>
         );
     }
 } 
@@ -241,7 +304,7 @@ const styles = {
 
     , lotpic: {
         width: '100%'
-        , height: '100%'
+        , height: 100
         , justifyContent: 'center'
         , alignItems: 'center'
     }
