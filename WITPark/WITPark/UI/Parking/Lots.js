@@ -8,8 +8,8 @@ export default class Lots extends Component {
 
     render() {
         return(
-            <Grid>
-                <ImageBackground source={require('../Images/Wentworth_Shield.png')} style={{width: '100%', height: '100%'}}>
+            <Grid style={{backgroundColor:'#000'}}>
+                <ImageBackground source={require('../Images/campus.jpg')} style={{width: '100%', height: '100%'}}>
                     <Lot name='West Lot' occ='125/155' pass="F, V, M" lat={42.336606} lon={-71.096264}/> 
                     <Lot name='East Lot' occ='188/200' pass="O" lat={42.336412} lon={-71.094252}/> 
                     <Lot name='Annex Lot' occ='29/100' pass="C, O" lat={42.335235} lon={-71.093382}/> 
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 
     }
     , buttonText: {
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: '500',
         color: '#ffffff',
         textAlign: 'center'

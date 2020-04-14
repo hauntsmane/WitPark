@@ -28,18 +28,18 @@ export default class Lot extends Component {
 
                 <Grid style={styles.lot}>
                     <Row style={styles.lotRow} onPress={this.handleClick}>
-                        <Col size={1}>
+                        <Col size={40}>
                             <Text style={styles.txt}>{name}</Text>
                         </Col>
-                        <Col size={1}>
+                        <Col size={30}>
                             <Row style={{alignItems:'center'}}>
-                            {this.canPark('F', require('../Images/staff_green.png'))}
-                            {this.canPark('C', require('../Images/student.png'))}
-                            {this.canPark('V', require('../Images/visitor.png'))}
-                            {this.canPark('O', require('../Images/overnight.png'))}
-                            {this.canPark('M', require('../Images/motorcycle.png'))}</Row>
+                            {this.canPark('F', require('../Images/staff_circle.png'))}
+                            {this.canPark('C', require('../Images/student_circle.png'))}
+                            {this.canPark('V', require('../Images/visitor_circle.png'))}
+                            {this.canPark('O', require('../Images/overnight_circle.png'))}
+                            {this.canPark('M', require('../Images/motorcycle_circle.png'))}</Row>
                         </Col>
-                        <Col size={1}>
+                        <Col size={30}>
                             <Text style={styles.txt}>{occ}</Text>
                         </Col>
                         
@@ -54,7 +54,7 @@ export default class Lot extends Component {
 
 const styles = StyleSheet.create({
     lot: {
-        backgroundColor: '#a7a9acf2'
+        backgroundColor: '#ffffffc3'
         , padding: 10
         , flex: 1
         , justifyContent: 'space-around'
@@ -75,13 +75,14 @@ const styles = StyleSheet.create({
         , alignItems:'center'
     }
     , txt: {
-        fontSize:25
+        fontSize:23
         , fontWeight:'bold'
+        , color: '#212121'
         
     }
     , passIcon: {
-        maxHeight:32
-        , maxWidth:32
+        maxHeight:30
+        , maxWidth:30
         , justifyContent:'center'
     }
   })

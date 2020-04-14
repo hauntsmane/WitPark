@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView, 
 import { Grid, Col, Row } from 'react-native-easy-grid'
 import { Actions } from 'react-native-router-flux'
 import getDirections from 'react-native-google-maps-directions'
+
+import LotMap from '../Maps/LotMap'
  
 
 class Lot_Detail extends Component {
@@ -106,20 +108,6 @@ class Lot_Detail extends Component {
                 // value: "navigate"       // this instantly initializes navigation using the given travel mode
                 // }
             ]
-            // , waypoints: [
-            //     {
-            //     latitude: -33.8600025,
-            //     longitude: 18.697452
-            //     },
-            //     {
-            //     latitude: -33.8600026,
-            //     longitude: 18.697453
-            //     },
-            //     {
-            //     latitude: -33.8600036,
-            //     longitude: 18.697493
-            //     }
-            // ]
         }
         
         getDirections(data)
@@ -147,16 +135,10 @@ class Lot_Detail extends Component {
         return(
             <ScrollView>
             <Grid>
-                <Row >
-                    {/* <Row>
-                        <Col>
-                            <Text style={styles.txt}>Name: {lot}</Text>
-                        </Col>
-                        <Col>
-                        
-                        </Col>
-                    </Row> */}
-                    <Col size={50}></Col>
+                <Row size={4}>
+                    <Col size={50}>
+                        <LotMap lat={this.props.lat} lon={this.props.lon}/>
+                    </Col>
                     <Col size={50}>
                         <ImageBackground 
                         source={require('../Images/car_shadow.png')} 
@@ -166,7 +148,7 @@ class Lot_Detail extends Component {
                         </ImageBackground>
                     </Col>
                 </Row>
-                <Row >
+                <Row size={1}>
                     <TouchableOpacity
                         style={styles.button}
                         onPress={this.GotoMap}  
@@ -174,25 +156,10 @@ class Lot_Detail extends Component {
                         <Text style={styles.buttonText}>Get Directions!</Text>
                     </TouchableOpacity>
                 </Row>
-                {/* <Row size={3}>  
-                <Image source={require('../Images/staff_green.png')} style={{maxHeight:32, maxWidth:32}}/>                  
+                <View>
                     <Row>
-                        <Text style={styles.txt}>Parking Pass Info:</Text> 
+                        <Text style={styles.txt}>Parking Pass Info:{'\n'}</Text> 
                     </Row>
-                        <Row>{this.isFac()}</Row>
-                        
-                        <Row>{this.isCom()}</Row>
-                        
-                        <Row>{this.isVis()}</Row>
-                        
-                        <Row>{this.isOver()}</Row>
-                        
-                        <Row>{this.isGuest()}</Row>
-                    </Row> */}
-                    <View>
-                <Row>
-                    <Text style={styles.txt}>Parking Pass Info:{'\n'}</Text> 
-                </Row>
                     {this.canPark('F', 'Faculty/Staff', require('../Images/staff_green.png'))}
                     {this.canPark('C', 'Student Commuter', require('../Images/student.png'))}
                     {this.canPark('V', 'Visitor', require('../Images/visitor.png'))}
