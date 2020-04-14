@@ -3,6 +3,12 @@ import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Linking} fro
 import { Grid, Row, Col} from 'react-native-easy-grid'
 
 import Lot from './Lot'
+/*import dbFunctions from './db/dbFunctions'
+
+w = 'tst'
+e = getOccupancy('EastLot')
+a = getOccupancy('AnnexLot')
+p = getOccupancy('ParkerStLot')*/
 
 export default class Lots extends Component {
 

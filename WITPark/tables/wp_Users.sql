@@ -5,7 +5,7 @@
 -- Dumped from database version 12.1
 -- Dumped by pg_dump version 12.0
 
--- Started on 2020-04-08 18:16:30
+-- Started on 2020-04-13 18:05:44
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -56,7 +56,7 @@ ALTER TABLE ONLY public."wp_Users"
     ADD CONSTRAINT wp_users_pkey PRIMARY KEY ("UserID");
 
 
--- Completed on 2020-04-08 18:16:30
+-- Completed on 2020-04-13 18:05:44
 
 --
 -- PostgreSQL database dump complete

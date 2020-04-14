@@ -1,11 +1,11 @@
--- 
+--
 -- PostgreSQL database dump
 --
 
 -- Dumped from database version 12.1
 -- Dumped by pg_dump version 12.0
 
--- Started on 2020-04-08 18:18:09
+-- Started on 2020-04-13 18:05:03
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -54,7 +54,7 @@ ALTER TABLE ONLY public."wp_LotOccupancy"
     ADD CONSTRAINT wp_occupancy_pkey PRIMARY KEY ("ParkingLot");
 
 
--- Completed on 2020-04-08 18:18:09
+-- Completed on 2020-04-13 18:05:03
 
 --
 -- PostgreSQL database dump complete
