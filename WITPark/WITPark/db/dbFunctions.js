@@ -1,10 +1,10 @@
-export default class dbFunctions extends Component{
- getTable(tableName){
+export default class dbFunctions{
+  getTable(tableName){
     pool.query("SELECT * from " + tableName, (err, res)=>{
       console.log(err,res)
       pool.end()
     })
-  }
+  };
 
   insertRegistration(user_name, user_pass){
     pool.query(
@@ -14,7 +14,7 @@ export default class dbFunctions extends Component{
         pool.end();
       }
     );
-  }
+  };
   
   findValue(table, column, value){
     x = pool.query("SELECT * FROM " + table + " WHERE " + column + " = " + value,
@@ -24,7 +24,7 @@ export default class dbFunctions extends Component{
     }
     );
     return x
-  }
+  };
 
   getOccupancy(column){
     x = pool.query("SELECT Occupancy FROM wp_LotOccupancy WHERE ParkingLot = " + column,
@@ -32,7 +32,17 @@ export default class dbFunctions extends Component{
       console.log(err, res);
       pool.end();
     }
-    );
+  );
     return x
-  }
-}  
+  };
+
+  getLogin(user_name, user_pass){
+    l = pool.query("SELECT " + user_pass + " FROM wp_Users WHERE UserName = " + user_name,
+    (err, res) => {
+      console.log(err, res);
+      pool.end();
+    }
+  );
+    return l
+  };
+}
