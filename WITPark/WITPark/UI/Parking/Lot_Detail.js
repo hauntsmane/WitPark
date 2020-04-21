@@ -22,23 +22,10 @@ class Lot_Detail extends Component {
           cordLongitude: this.props.lon,
         };
     
-        //this.mergeLot = this.mergeLot.bind(this);
     
       }
 
-    //   mergeLot(){
-    //     if (this.state.latitude != null && this.state.longitude!=null)
-    //      {
-    //        let concatLot = this.state.latitude +","+this.state.longitude
-    //        this.setState({
-    //          concat: concatLot
-    //        }, () => {
-    //          this.getDirections(concatLot, this.props.lat + ',' + this.props.lon);
-    //        });
-    //      }
-    
-    //    }
-
+      //checks to see if the lot if full then display button if full
     isLotFull = () => {
         let current = this.props.occ.split('/')[0]
         let max = this.props.occ.split('/')[1]
@@ -59,17 +46,6 @@ class Lot_Detail extends Component {
         }
         return null
     }
-    /* isPass = () => {
-            let end = <Text> </Text>
-            if (this.props.pass.includes("F/S")){
-                    end+= <Text style={styles.txt}>Faculty/Staff</Text>
-            }
-            if (this.props.pass.includes("V")){
-                end+= <Text style={styles.txt}>Visitor</Text>
-        }
-            return end
-        }
-    */
        
    componentDidMount() {
     navigator.geolocation.getCurrentPosition(
@@ -101,18 +77,16 @@ class Lot_Detail extends Component {
             , params: [
                 {
                 key: "travelmode",
-                value: "driving"        // may be "walking", "bicycling" or "transit" as well
+                value: "driving"        
                 }
-                // , {
-                // key: "dir_action",
-                // value: "navigate"       // this instantly initializes navigation using the given travel mode
-                // }
+              
             ]
         }
         
         getDirections(data)
     
     }
+    //determines if a parking pass is greyed out or not
     canPark = (passType, person, imgLoc ) => {
         return(
             <Row>

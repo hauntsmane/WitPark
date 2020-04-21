@@ -13,7 +13,7 @@ export default class Register extends Component {
     goBack() {
         Actions.pop()
     }
-
+    //uses form.js and renders with registration info
     render() {
         return(
             <View style={styles.container}>

@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-//import { View, Text, StyleSheet } from 'react-native'
 import { Platform, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
-//import { Menu, MenuProvider, MenuOptions, MenuOption, MenuTrigger} from 'react-native-popup-menu'
 import {Actions} from 'react-native-router-flux';
 import { Grid, Col, Row } from 'react-native-easy-grid'  
 
@@ -17,7 +15,7 @@ class Header extends Component {
    
     render() {
         return (
-            
+            //custom logo in header
             <View className='Header' style={styles.container}>
                 <Grid>
                     <Col style={{justifyContent:'center', paddingLeft: 10}}>
