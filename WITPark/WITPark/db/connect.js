@@ -15,8 +15,8 @@ const res = await client.query('SELECT NOW()')
 await client.end()
 
 PGHOST='localhost'
-PGUSER=process.env.USER
-PGDATABASE=process.env.USER
-PGPASSWORD=witpark
-PGPORT=7897
+PGUSER='postgres'
+PGDATABASE='postgres'
+PGPASSWORD='witpark'
+PGPORT=5432
 
