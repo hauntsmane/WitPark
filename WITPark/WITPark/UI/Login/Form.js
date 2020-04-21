@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, AsyncStorage, Keyboard } from 'react-native';
 import {Actions} from 'react-native-router-flux';
-
+import dbFunctions from '../../db/dbFunctions.js';
  
 export default class Form extends Component {
  
@@ -30,22 +30,40 @@ export default class Form extends Component {
         if(this.props.type !== 'Login')
         {
             AsyncStorage.setItem('loginDetails', JSON.stringify(loginDetails));
- 
+
             Keyboard.dismiss();
-            alert("You successfully registered. Email: " + email + ' password: ' + password);
-            this.login();
+            if(password.length == 0 || email.length == 0){
+                alert("Some required fields are not entered")
+            }
+            else if(email = dbFunction.findValue(wp_Users, UserName, email)){
+                alert("Email already exists")
+            }
+            else{
+                dbFunctions.insertRegistration(email, password);
+                alert("You successfully registered. Email: " + email + ' password: ' + password);
+                this.login();
+            }
         }
 
         //Login form
         else if(this.props.type == 'Login')
         {
-            try{
+            if(password.length == 0 || email.length == 0){
+                alert("Some required fields are not entered")
+            }
+            else if(password == getLogin(email, password)){
+                try{
                     Actions.home();
  
-            }catch(error)
-            {
-                alert(error);
+                }catch(error)
+                    {
+                     alert(error);
+                }
             }
+            else{
+                alert("Either Email or password is incorrect")
+            }
+            
         }
     }
  
