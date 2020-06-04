@@ -26,27 +26,10 @@ export default class Form extends Component {
             password: password
         }
         
-        //Register form
-        if(this.props.type !== 'Login')
-        {
-            AsyncStorage.setItem('loginDetails', JSON.stringify(loginDetails));
-
-            Keyboard.dismiss();
-            if(password.length == 0 || email.length == 0){
-                alert("Some required fields are not entered")
-            }
-            else if(email = dbFunction.findValue(wp_Users, UserName, email)){
-                alert("Email already exists")
-            }
-            else{
-                dbFunctions.insertRegistration(email, password);
-                alert("You successfully registered. Email: " + email + ' password: ' + password);
-                this.login();
-            }
-        }
+      
 
         //Login form
-        else if(this.props.type == 'Login')
+         if(this.props.type == 'Login')
         {
             if(password.length == 0 || email.length == 0){
                 alert("Some required fields are not entered")
@@ -98,7 +81,7 @@ export default class Form extends Component {
  
                 {/* submit button */}
                 <TouchableOpacity style={styles.button}> 
-                    <Text style={styles.buttonText} onPress={this.saveData}>{this.props.type}</Text>
+                    <Text style={styles.buttonText} onPress={this.loginTRUE}>{this.props.type}</Text>
                 </TouchableOpacity>
             </View>
             
