@@ -5,7 +5,7 @@ import {
   View,
   TouchableOpacity
 } from 'react-native';
-import Form from './Form';
+import Formreg from './Formreg';
 import {Actions} from 'react-native-router-flux';
 
 export default class Register extends Component {
@@ -19,7 +19,7 @@ export default class Register extends Component {
             <View style={styles.container}>
                 <Text>{'\n'}</Text>
                 <Text>{'\n'}</Text>
-                <Form type="Signup"/>
+                <Formreg type="Register"/>
                 <View style={styles.signupTextCont}> 
                     <Text style={styles.signupText}>Already have an account? </Text>
                     <TouchableOpacity onPress={this.goBack}><Text style={styles.signupButton}>Sign in</Text></TouchableOpacity>
