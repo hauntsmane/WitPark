@@ -3,11 +3,13 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, AsyncStorage, Keyb
 import {Actions} from 'react-native-router-flux';
 import dbFunctions from '../../db/dbFunctions.js';
  
-export default class Form extends Component {
+export default class Formreg extends Component {
  
     constructor(props){
         super(props);
         this.state={
+            first: '',
+            last: '',
             email:'',
             password: ''
         }
@@ -18,36 +20,35 @@ export default class Form extends Component {
     }
  
     saveData =async()=>{
-        const {email,password} = this.state;
+        const {email,password,first,last} = this.state;
  
         //save data with asyncstorage
         let loginDetails={
             email: email,
-            password: password
+            password: password,
+            first: first,
+            last: last
         }
         
-      
-
-        //Login form
-         if(this.props.type == 'Login')
+        //Register form
+        if(this.props.type == 'Formreg')
         {
+            AsyncStorage.setItem('loginDetails', JSON.stringify(loginDetails));
+
+            Keyboard.dismiss();
             if(password.length == 0 || email.length == 0){
                 alert("Some required fields are not entered")
             }
-            else if(password == getLogin(email, password)){
-                try{
-                    Actions.home();
- 
-                }catch(error)
-                    {
-                     alert(error);
-                }
+            else if(email = dbFunction.findValue(wp_Users, UserName, email)){
+                alert("Email already exists")
             }
             else{
-                alert("Either Email or password is incorrect")
+                dbFunctions.insertRegistration(email, password);
+                alert("You successfully registered. Email: " + email + ' password: ' + password);
+                this.login();
             }
-            
         }
+
     }
  
     showData = async()=>{
@@ -59,6 +60,27 @@ export default class Form extends Component {
     render() {
         return(
             <View style={styles.container}>
+                
+                 {/* firstname textbox */}
+                 <TextInput style={styles.inputBox}
+                onChangeText={(first) => this.setState({first})}
+                underlineColorAndroid='rgba(0,0,0,0)' 
+                placeholder="Firstname"
+                placeholderTextColor = "#000000"
+                selectionColor="#fff"
+                keyboardType="email-address"
+                onSubmitEditing={()=> this.password.focus()}/>
+
+                 {/* lastname textbox */}
+                 <TextInput style={styles.inputBox}
+                onChangeText={(last) => this.setState({last})}
+                underlineColorAndroid='rgba(0,0,0,0)' 
+                placeholder="Lastname"
+                placeholderTextColor = "#000000"
+                selectionColor="#fff"
+                keyboardType="email-address"
+                onSubmitEditing={()=> this.password.focus()}/>
+                
                 {/* email textbox */}
                 <TextInput style={styles.inputBox}
                 onChangeText={(email) => this.setState({email})}
