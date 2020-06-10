@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Linking} from 'react-native'
 import { Grid, Row, Col} from 'react-native-easy-grid'
+import {Actions} from 'react-native-router-flux';
 
-import Lot from './Lot'
+import Lot from './Lot';
+import Events from './events'
 /*import dbFunctions from './db/dbFunctions'
 
 w = 'tst'
@@ -11,6 +13,11 @@ a = getOccupancy('AnnexLot')
 p = getOccupancy('ParkerStLot')*/
 
 export default class Lots extends Component {
+
+    events() {
+        Actions.events()
+    }
+
 
     render() {
         return(
@@ -24,11 +31,20 @@ export default class Lots extends Component {
                     <Row>
                         <TouchableOpacity
                         style={styles.button}
+                        onPress={this.events} 
+                        >
+                            <Text style={styles.buttonText}>Events</Text>
+                        </TouchableOpacity>
+                    </Row>
+                    <Row>
+                        <TouchableOpacity
+                        style={styles.button}
                         onPress={ ()=>{ Linking.openURL('https://wit.edu/public-safety/parking')}} 
                         >
                             <Text style={styles.buttonText}>Parking Pass Purchasing/Info</Text>
                         </TouchableOpacity>
                     </Row>
+                    
                 </ImageBackground>
                 
             </Grid>
