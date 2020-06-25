@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, ImageBackground, Linking} from 'react-native'
 import { Grid, Row, Col } from 'react-native-easy-grid'
 import {Actions} from 'react-native-router-flux';
+import { WebView } from 'react-native-webview';
 //import Eventform from './eventform'
 
 export default class Events extends Component {
@@ -10,26 +11,42 @@ export default class Events extends Component {
    
     render() {
         return(
-            <ScrollView>
-            <Grid>  
-            <Col>
-              <Row>
+            <Grid>
+            <Col style ={styles.eventcol}>
               <Text style={styles.txt}>Latest</Text>
-              </Row>
               <Row>
-               <Text style={styles.txt}>Insert latest events</Text> 
+              <WebView
+               source={{
+               uri: 'https://wit.edu/covid-19-online-classes'
+                 }}
+                style={{ marginTop: 10 }}
+                />
               </Row>
             </Col>
-            <Col>
+            <Row>
+            
+            <Col style ={styles.eventcol}>
+            <Text style={styles.txt}>All</Text>
               <Row>
-               <Text style={styles.txt}>Upcoming</Text> 
-              </Row>
-              <Row>
-              <Text style={styles.txt}>Insert all events</Text> 
+              <WebView
+               source={{
+               uri: 'https://wit.edu/news'
+                 }}
+                style={{ marginTop: 10 }}
+                />
+                </Row>
+                <Row style ={styles.buttonRow}>
+               <TouchableOpacity
+                    style={styles.button}
+                    onPress={ ()=>{ Linking.openURL('https://wit.edu/calendar/university-events')}}
+                    >
+                  <Text style={styles.buttonText}>All Events</Text>
+              </TouchableOpacity>   
               </Row>
             </Col>
+            </Row>
             </Grid>
-            </ScrollView>
+            
         )
     }
 }
@@ -42,19 +59,47 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
     },
     button: {
-      width: 300,
-      backgroundColor: '#000000',
+      width: 160,
+      backgroundColor: '#f47521',
       borderRadius: 25,
-      marginVertical: 10,
-      paddingVertical: 12
+      marginVertical: 0,
+      paddingVertical: 15,
+      textAlign: "center",
   },
-  buttonText: {
-      fontSize: 16,
-      fontWeight: '500',
-      color: '#E7B004',
-      textAlign: 'center'
-  },
+
   txt: {
-    fontSize:20
+    fontSize:24,
+   
+},
+  
+ buttonText: {
+  fontSize: 20,
+  fontWeight: '500',
+  color: 'white',
+  textAlign: 'center'
+},
+  event: {
+    backgroundColor: '#ffffffc3'
+    , padding: 10
+    , flex: 1
+    , justifyContent: 'space-around'
+    , alignItems: 'center'
+    , flexDirection: 'row'
+    , margin:5
+    , borderRadius:20
+    , shadowColor: '#000000'
+    , shadowOffset: { width: 1, height: 1 }
+    , shadowOpacity: 0.3
+    , elevation: 2
+},
+eventcol: {
+  width: '100%'
+  , height: '100%'
+  , flex: 1
+  , alignItems:'center'
+  , backgroundColor: '#CDCCC8'
+},
+buttonRow: {
+  height: '20%',
 }
 });
