@@ -107,12 +107,12 @@ export default class LotMap extends Component {
          coordinate={{"latitude":this.state.latitude,"longitude":this.state.longitude}}
          title={"Your Location"}
        />}
-{/* 
+ 
        {!!this.state.cordLatitude && !!this.state.cordLongitude && <MapView.Marker
           coordinate={{"latitude":this.state.cordLatitude,"longitude":this.state.cordLongitude}}
           title={"Your Destination"}
         />}
-
+{/*
        {!!this.state.latitude && !!this.state.longitude && this.state.x == 'true' && <MapView.Polyline
             coordinates={this.state.coords}
             strokeWidth={2}
