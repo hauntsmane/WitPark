@@ -8,7 +8,7 @@ export default class Login extends Component {
     signup() {
         Actions.signup()
     }
- 
+    //uses form.js and renders with login info
     render() {
         return(
             <View style={styles.container}>

@@ -4,6 +4,7 @@ import { Grid, Row, Col } from 'react-native-easy-grid'
 import {Actions} from 'react-native-router-flux';
 
 export default class Lot extends Component {
+    //handles displaying lot details 
     handleClick = () => {
         Actions.lot_detail({title: this.props.name
                           , occ: this.props.occ
@@ -25,7 +26,7 @@ export default class Lot extends Component {
         const pass = this.props.pass
 
         return(
-
+                //displays all the lots with custom icons for parking passes
                 <Grid style={styles.lot}>
                     <Row style={styles.lotRow} onPress={this.handleClick}>
                         <Col size={40}>

@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-//import {View, StyleSheet} from 'react-native';
-//import MapView, {Marker} from 'react-native-maps';
 import { AppRegistry, StyleSheet, Dimensions, Image, View, StatusBar, TouchableOpacity } from "react-native";
-
 import MapView from 'react-native-maps';
 import Polyline from '@mapbox/polyline';
 
@@ -37,7 +34,7 @@ export default class LotMap extends Component {
         this.mergeLot = this.mergeLot.bind(this);
     
       }
-    
+    //uses getCurrentPosition using latitude and longitude
       componentDidMount() {
         navigator.geolocation.getCurrentPosition(
            (position) => {
@@ -66,7 +63,7 @@ export default class LotMap extends Component {
          }
     
        }
-    
+       //uses googpe maps api to give directions based off of current location
        async getDirections(startLoc, destinationLoc) {
     
              try {
