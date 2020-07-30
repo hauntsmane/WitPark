@@ -1,0 +1,10 @@
+{
+    "users": {
+        "malnatij@wit.edu": {
+            "firstName":"Josh"
+            , "lastName":"Malnati"
+            , "email":"malnatij@wit.edu"
+            , "passwordHash":"5C6FD31F72846292F706F04601H51AA7263AFF7D8MEE86F80F3E76GE5DE9EEC8"
+        }
+    }
+}

@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux'
 import getDirections from 'react-native-google-maps-directions'
 
 import LotMap from '../Maps/LotMap'
- 
+// import Pred_Occ from './Pred_Occ' 
 
 class Lot_Detail extends Component {
     constructor(props) {
@@ -23,7 +23,7 @@ class Lot_Detail extends Component {
         };
     
     
-      }
+    }
 
       //checks to see if the lot if full then display button if full
     isLotFull = () => {
@@ -95,7 +95,7 @@ class Lot_Detail extends Component {
                     opacity: (this.props.pass.includes(passType) ? 1 : 0.6)
                 }}/>
                 <Text style={[styles.txt, {
-                    color: (this.props.pass.includes(passType) ? '#000000' : '#BBBBBB')
+                    color: (this.props.pass.includes(passType) ? '#000000' : '#999999')
                 }]}>{person}</Text>
             </Row>
         )
@@ -109,11 +109,23 @@ class Lot_Detail extends Component {
         return(
             <ScrollView>
             <Grid>
-                <Row size={4}>
-                    <Col size={50}>
-                        <LotMap lat={this.props.lat} lon={this.props.lon}/>
+            <ImageBackground source={require('../Images/aerial.jpg')} style={{width: '100%', height: '100%'}}>
+            <Row style={{padding:10}}>
+                <Col>
+                    <LotMap lat={this.props.lat} lon={this.props.lon} style={{borderRadius:30}}/>
+                    <Text style={{height:200}} ></Text>
+                </Col>
+            </Row>
+                <Row>
+                <Col size={55}>
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={this.GotoMap}  
+                        >
+                            <Text style={styles.buttonText}>Get Directions!</Text>
+                        </TouchableOpacity>
                     </Col>
-                    <Col size={50}>
+                    <Col size={45}>
                         <ImageBackground 
                         source={require('../Images/car_shadow.png')} 
                         style={styles.lotpic} 
@@ -121,16 +133,12 @@ class Lot_Detail extends Component {
                             <Text style={[styles.txt, styles.occ]}>{occ}</Text>
                         </ImageBackground>
                     </Col>
+                    
                 </Row>
-                <Row size={1}>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={this.GotoMap}  
-                    >
-                        <Text style={styles.buttonText}>Get Directions!</Text>
-                    </TouchableOpacity>
-                </Row>
-                <View>
+
+                {/* <Pred_Occ lotName={lot} /> */}
+
+                <View style={styles.page}>
                     <Row>
                         <Text style={styles.txt}>Parking Pass Info:{'\n'}</Text> 
                     </Row>
@@ -143,6 +151,7 @@ class Lot_Detail extends Component {
                 {/* <Row style={{backgroundColor: 'red'}}>
                     {this.isLotFull()}
                 </Row>     */}
+            </ImageBackground>
             </Grid>
             </ScrollView>
         );
@@ -152,13 +161,29 @@ class Lot_Detail extends Component {
 export default Lot_Detail
 
 const styles = {
-    occ: {
+    page: {
+        backgroundColor: '#ffffffc3'
+        , padding: 10
+        , flex: 1
+        // , justifyContent: 'space-around'
+        // , alignItems: 'center'
+        // , flexDirection: 'row'
+        , margin:5
+        , borderRadius:20
+        , shadowColor: '#000000'
+        , shadowOffset: { width: 1, height: 1 }
+        , shadowOpacity: 0.3
+        , elevation: 2
+    }
+    
+    , occ: {
         color:'white'        
     }
 
     , lotpic: {
         width: '100%'
         , height: 100
+        , paddingVertical: -50
         , justifyContent: 'center'
         , alignItems: 'center'
     }
@@ -175,11 +200,13 @@ const styles = {
     }
 
     , button: {
-        width: 250,
+        // width: 250,
         backgroundColor: '#4f83cc',
         borderRadius: 25,
-        marginVertical: 65,
-        paddingVertical: 15
+        // marginVertical: 10,
+        paddingVertical: 15,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
     , buttonText: {
         fontSize: 16,

@@ -5,6 +5,10 @@ import {Actions} from 'react-native-router-flux';
 
 import Lot from './Lot';
 import Events from './events'
+
+//parking occupancy data
+const data = require('../../data/lots.json');
+
 /*import dbFunctions from './db/dbFunctions'
 
 w = 'tst'
@@ -14,15 +18,20 @@ p = getOccupancy('ParkerStLot')*/
 
 const days = {0:'Sun', 1:'Mon', 2:'Tues', 3:'Wed', 4:'Thurs', 5:'Fri', 6:'Sat'}
 
-const data = require('../../data/lots_present.json');
+
 let date = new Date();
 let time = date.getHours()*100 + Math.ceil(date.getMinutes()/5)*5;
 let day = days[date.getDay()]
 
-if (time < 1100)
-    time = 1100;
-if (time > 1259)
-    time = 1259;
+if (time < 600)
+    time = 600;
+if (time > 2200)
+    time = 2200;
+
+// if (time < 1100)
+//     time = 1100;
+// if (time > 1259)
+//     time = 1259;
 
 export default class Lots extends Component {
 

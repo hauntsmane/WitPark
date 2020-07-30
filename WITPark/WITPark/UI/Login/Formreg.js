@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, AsyncStorage, Keyboard } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import dbFunctions from '../../db/dbFunctions.js';
+
+
+// var RNFS = require('react-native-fs');
+const userData = require('../../data/users.json');
+// const fs = require('fs');
+const sha256 = require('js-sha256');
  
 export default class Formreg extends Component {
  
@@ -15,8 +21,25 @@ export default class Formreg extends Component {
         }
     }
 
-    loginTRUE() {
+    loginTRUE = () => {
+
+        let pwhash = sha256(this.state.password);
+        for (let i=0; i<5; i++){
+            pwhash = sha256(pwhash);
+        }
+
+        const newUser = {
+            firstName: this.state.first
+            , lastName: this.state.last
+            , email: this.state.email
+            , passwordHash: pwhash
+        }
+        const jsonStr = JSON.stringify(newUser);
+
+        //.write('../../data/users.json', jsonStr, -1);
+
         Actions.home()
+        console.log('press')
     }
  
     saveData =async()=>{
@@ -103,7 +126,11 @@ export default class Formreg extends Component {
  
                 {/* submit button */}
                 <TouchableOpacity style={styles.button}> 
-                    <Text style={styles.buttonText} onPress={this.loginTRUE}>{this.props.type}</Text>
+                    <Text style={styles.buttonText} 
+                    onPress={this.loginTRUE}
+                    >
+                        {this.props.type}
+                    </Text>
                 </TouchableOpacity>
             </View>
             

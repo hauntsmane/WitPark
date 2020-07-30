@@ -131,10 +131,13 @@ export default class LotMap extends Component {
 
 const styles = StyleSheet.create({
   map: {
-    position: 'absolute',
+    position:'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
+    // width: 100, //full width
+    // height: 100, //full height
+    // flex: 1
   },
 });
